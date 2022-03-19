@@ -3,10 +3,10 @@ const path = require("path");
 
 const app = express();
 
-app.use(express.static("./dist/angular-app-heroku"));
+app.use(express.static("./dist/github-fyle"));
 
 app.get("/*", (req, res) =>
-  res.sendFile("index.html", { root: "dist/angular-app-heroku/" })
+  res.sendFile("index.html", { root: "dist/github-fyle/" })
 );
 
 app.listen(process.env.PORT || 8080);
