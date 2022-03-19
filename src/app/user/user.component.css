@@ -1,0 +1,78 @@
+.head {
+  color: cadetblue;
+  margin-bottom: 1rem;
+}
+
+.wrapper {
+  display: flex;
+}
+
+.myBtn {
+  margin-left: 2rem;
+}
+
+.top {
+  display: grid;
+  place-items: center;
+  margin-bottom: 6rem;
+}
+
+.med {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+.info {
+  font-weight: bold;
+}
+.info-2 {
+  font-size: x-large;
+  font-weight: bold;
+}
+
+.card {
+  color: #fff;
+  border: 3px solid black;
+  margin-bottom: 2rem;
+  border-radius: 6px;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08), 0 0 6px rgba(0, 0, 0, 0.05);
+  transition: 0.3s;
+}
+
+.head-1 {
+  font-weight: 700;
+  color: darkcyan;
+  font-size: x-large;
+  margin-left: 1rem;
+}
+
+.p-button {
+  padding: 0.5rem 0.1rem;
+}
+
+.row-1 {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  justify-items: center;
+}
+
+.card:hover {
+  cursor: pointer;
+  background-color: darkgray;
+  transform: scale(1.05);
+}
+
+.p-image{
+  border-radius: 50%;
+}
+
+.paginate{
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}

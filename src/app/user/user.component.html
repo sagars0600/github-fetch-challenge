@@ -1,0 +1,74 @@
+<div class="container col-lg-12 top">
+  <div class="col-lg-6">
+    <h2 class="head">Enter Username for Repository Details!</h2>
+  </div>
+  <div class="col-lg-6 wrapper">
+    <input
+      type="text"
+      pInputText
+      [(ngModel)]="searchtext"
+      placeholder="Enter Username"
+    />
+    <p-button label="Search User" class="myBtn" (onClick)="click()"></p-button>
+  </div>
+</div>
+<div class="container med" *ngIf="test">
+  <div class="col-xs-12 col-md-4 col-lg-2 col-sm-12">
+    <p-image
+      src="{{ data.avatar_url }}"
+      alt="Image"
+      width="200"
+      class="avatar"
+    ></p-image>
+  </div>
+  <div class="col-xs-12 col-md-6 col-lg-6 col-sm-12 p-4">
+    <div class="row mb-2">
+      <div class="col-6 info-2">{{ data.name }}</div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-8 info">{{ data.bio }}</div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-8 info">
+        <i class="pi pi-map-marker"></i> {{ data.location }}
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-8 info">
+        <i class="pi pi-building"></i> {{ data.company }}
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-8 info"><i class="pi pi-github"></i> {{ data.id }}</div>
+    </div>
+  </div>
+</div>
+<div class="container" *ngIf="test">
+  <div class="row-1">
+    <p-card
+      class="card col-5"
+      *ngFor="
+        let repo of repos | paginate: { itemsPerPage: 10, currentPage: p, totalItems: total }">
+      <ng-template pTemplate="header"
+        ><p-header class="head-1">{{ repo.name }}</p-header>
+      </ng-template>
+      <ng-template pTemplate="content"> {{ repo.id }} </ng-template>
+      <ng-template pTemplate="footer">
+        <p-button>{{ repo.language }}</p-button>
+      </ng-template>
+    </p-card>
+  </div>
+
+  <!-- <p-paginator
+    *ngIf="test"
+    [rows]="10" [totalRecords]="totalRecords" >
+    (onPageChange)="paginate($event)"
+  ></p-paginator> -->
+</div>
+<pagination-controls
+  *ngIf="test"
+  (pageChange)="p = $event" class="paginate"
+></pagination-controls>
+<p-toast position="top-right" key="myKey1"></p-toast>
+<p-toast position="top-right" key="myKey2"></p-toast>
+<ngx-ui-loader [loaderId]="'loader-01'"></ngx-ui-loader>
