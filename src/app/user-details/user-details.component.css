@@ -1,0 +1,120 @@
+.head {
+  color: cadetblue;
+  margin-bottom: 1rem;
+}
+
+.wrapper {
+  display: flex;
+}
+
+
+.med {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+  margin-top: 5rem;
+}
+
+.info {
+  font-weight: bold;
+}
+.info-2 {
+  font-size: x-large;
+  font-weight: bold;
+}
+
+.card {
+  color: #fff;
+  border: 2px solid black;
+  margin-bottom: 2rem;
+  border-radius: 6px;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08), 0 0 6px rgba(0, 0, 0, 0.05);
+  transition: 0.3s;
+}
+
+.head-1 {
+  font-weight: 700;
+  color: darkcyan;
+  font-size: x-large;
+  margin-left: 1rem;
+}
+
+.p-button {
+  padding: 0.5rem 0.1rem;
+}
+
+.row-1 {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  justify-items: center;
+}
+
+.card:hover {
+  cursor: pointer;
+  background-color: darkgray;
+  transform: scale(1.05);
+}
+
+.p-image{
+  border-radius: 50%;
+}
+
+
+.projectBtn{
+  margin-top: 5rem;
+}
+
+:host >>> .p-card .p-card-content{
+  padding: 0rem !important ;
+}
+
+
+.notFoundUser{
+  color: red;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+}
+
+.btn{
+  background-color: cadetblue;
+  border: 1px solid black;
+  color: white;
+  padding: 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-left: 2rem;
+  margin-top: 1rem;
+}
+
+.btn-1{
+  background-color: cadetblue;
+  border: 1px solid rgb(0, 0, 0);
+  color: white;
+  padding: 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 0.25rem;
+}
+
+
+.pagi{
+  display: flex;
+  justify-content: center;
+}
+
+.my-pagination /deep/ .ngx-pagination .current {
+  background: teal;
+}
+
+
+/* :host >>> .ng-tns-c21-2 {
+  border-radius: 50%;
+} */

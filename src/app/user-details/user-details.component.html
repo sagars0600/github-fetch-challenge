@@ -1,0 +1,85 @@
+<div class="back">
+  <button class="btn" routerLink="/">Back</button>
+</div>
+<div class="container med" *ngIf="test">
+  <div class="col-xs-12 col-md-4 col-lg-2 col-sm-12">
+    <p-image
+      src="{{ data.avatar_url }}"
+      alt="Image"
+      width="200"
+      class="avatar"
+    ></p-image>
+  </div>
+  <div class="col-xs-12 col-md-6 col-lg-6 col-sm-12 p-4">
+    <div class="row mb-2">
+      <div class="col-6 info-2">{{ data.name }}</div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-8 info">{{ data.bio }}</div>
+    </div>
+
+    <div class="row mb-2">
+      <div class="col-8 info">
+        <i class="pi pi-map-marker"></i> {{ data.location }}
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-8 info">
+        <i class="pi pi-building"></i> {{ data.company }}
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-8 info"><i class="pi pi-github"></i> {{ data.id }}</div>
+    </div>
+  </div>
+  <div class="projectBtn">
+    <button type="button" (click)="getdetails()" class="btn btn-success">
+      Project Details
+    </button>
+  </div>
+</div>
+
+<div class="container" *ngIf="test1">
+  <div class="row-1">
+    <p-card
+      class="card col-5"
+      *ngFor="
+        let repo of projectDetails
+          | paginate
+            : {
+                itemsPerPage: itemsPerPage,
+                currentPage: page,
+                totalItems: 40
+              }
+      "
+    >
+      <ng-template pTemplate="header"
+        ><p-header>
+          <a class="head-1" [href]="repo.html_url">{{ repo.name }}</a></p-header
+        >
+      </ng-template>
+      <ng-template pTemplate="content">
+        {{ repo.updated_at | date }}
+      </ng-template>
+      <ng-template pTemplate="footer">
+        <div class="btn-1">{{ repo.language }}</div>
+      </ng-template>
+    </p-card>
+  </div>
+  <pagination-controls
+    class="pagi"
+    (pageChange)="gty((page = $event))"
+  ></pagination-controls>
+</div>
+
+<!-- <div class="pagi" *ngIf="test1">
+  <button (click)="prevPage()" [disabled]="page === 1? true : false">Prev</button>
+  <button (click)="nextPage()">Next</button>
+</div> -->
+
+<p-toast position="top-right" key="myKey1"></p-toast>
+<p-toast position="top-right" key="myKey2"></p-toast>
+<ngx-ui-loader [loaderId]="'loader-01'"></ngx-ui-loader>
+<div *ngIf="!test">
+  <h1 class="notFoundUser">User Not Found</h1>
+</div>
