@@ -48,7 +48,12 @@ export class UserDetailsComponent implements OnInit {
       this.http.get(url).subscribe(
 
         (response) => {
-
+          this.messageService.add({
+            key: 'myKey1',
+            severity: 'success',
+            summary: 'User Find',
+            detail: 'User ' + this.user,
+          });
           this.ngxService.startLoader('loader-01');
           setTimeout(() => {
             this.ngxService.stopLoader('loader-01');
