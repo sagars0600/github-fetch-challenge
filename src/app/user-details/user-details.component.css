@@ -109,12 +109,3 @@
   display: flex;
   justify-content: center;
 }
-
-.my-pagination /deep/ .ngx-pagination .current {
-  background: teal;
-}
-
-
-/* :host >>> .ng-tns-c21-2 {
-  border-radius: 50%;
-} */

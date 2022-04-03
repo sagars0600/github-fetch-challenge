@@ -3,6 +3,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { MessageService } from 'primeng/api';
+import { shareReplay } from 'rxjs';
 
 const CACHE_KEY = 'httpRepoCache';
 @Component({
@@ -24,6 +25,7 @@ export class UserDetailsComponent implements OnInit {
   totalItems : any;
 
   accessUser:any;
+
   constructor(
     private router: ActivatedRoute,
     private http: HttpClient,
@@ -34,11 +36,11 @@ export class UserDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.getUser();
 
+
   }
   //get user
   getUser() {
     this.router.queryParams.subscribe((response: any) => {
-      console.log(response.user);
       this.user = response.user;
       this.accessUser = localStorage.getItem('1');
       console.log(localStorage.getItem('1'));
@@ -71,8 +73,7 @@ export class UserDetailsComponent implements OnInit {
   }
 
  getdetails(){
-
-    this.http.get(`https://api.github.com/users/${this.user}/repos?page=${1}&per_page=${this.itemsPerPage}`).subscribe((response:any) =>{
+    this.http.get(`https://api.github.com/users/${this.user}/repos?per_page=100`).subscribe((response:any) =>{
       console.log(response);
       this.projectDetails =  response;
       this.totalItems = response.length;
@@ -81,15 +82,17 @@ export class UserDetailsComponent implements OnInit {
       setTimeout(() => {
         this.ngxService.stopLoader('loader-01');
       }, 100);
+
     })
   }
-  gty(page: any){
-    this.http.get(`https://api.github.com/users/${this.user}/repos?page=${page}&per_page=${this.itemsPerPage}`).subscribe((response: any) => {
-      this.projectDetails =  response;
-      this.totalItems = response.length;
-      this.test1 = true;
-      
-    })
-  }
+  // gty(){
+  //   this.http.get(`https://api.github.com/users/${this.user}/repos?per_page=100`).subscribe((response: any) => {
+  //     this.projectDetails =  response;
+  //     this.totalItems = response.length;
+  //     console.log(this.totalItems);
+  //     this.test1 = true;
+
+  //   })
+  // }
 
 }

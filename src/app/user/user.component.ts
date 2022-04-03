@@ -13,7 +13,6 @@ export class UserComponent implements OnInit {
   ngOnInit(): void {}
 
   getUser() {
-    console.log(this.username);
     this.router.navigate(['/user'], { queryParams: { user: this.username } });
   }
 }

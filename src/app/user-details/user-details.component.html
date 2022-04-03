@@ -48,8 +48,7 @@
           | paginate
             : {
                 itemsPerPage: itemsPerPage,
-                currentPage: page,
-                totalItems: 40
+                currentPage: page
               }
       "
     >
@@ -68,14 +67,9 @@
   </div>
   <pagination-controls
     class="pagi"
-    (pageChange)="gty((page = $event))"
+    (pageChange)="page = $event"
   ></pagination-controls>
 </div>
-
-<!-- <div class="pagi" *ngIf="test1">
-  <button (click)="prevPage()" [disabled]="page === 1? true : false">Prev</button>
-  <button (click)="nextPage()">Next</button>
-</div> -->
 
 <p-toast position="top-right" key="myKey1"></p-toast>
 <p-toast position="top-right" key="myKey2"></p-toast>
