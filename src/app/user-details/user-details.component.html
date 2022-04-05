@@ -48,7 +48,8 @@
           | paginate
             : {
                 itemsPerPage: itemsPerPage,
-                currentPage: page
+                currentPage: page,
+                totalItems: totalItems
               }
       "
     >
@@ -67,7 +68,7 @@
   </div>
   <pagination-controls
     class="pagi"
-    (pageChange)="page = $event"
+    (pageChange)="page = $event; getdetails()"
   ></pagination-controls>
 </div>
 

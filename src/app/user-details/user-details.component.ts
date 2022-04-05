@@ -14,17 +14,14 @@ const CACHE_KEY = 'httpRepoCache';
 export class UserDetailsComponent implements OnInit {
   data: any = {};
   user: any;
-  test = false;
+  test = true;
   test1 = false;
-
   projectDetails: any = [];
   repos: any = [];
-
   page: number = 1;
   itemsPerPage = 10;
-  totalItems : any;
-
-  accessUser:any;
+  totalItems: any;
+  cachedData: any = {};
 
   constructor(
     private router: ActivatedRoute,
@@ -35,19 +32,15 @@ export class UserDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUser();
-
-
   }
   //get user
   getUser() {
     this.router.queryParams.subscribe((response: any) => {
       this.user = response.user;
-      this.accessUser = localStorage.getItem('1');
-      console.log(localStorage.getItem('1'));
+
       let url = 'https://api.github.com/users/' + response.user;
       this.http.get(url).subscribe(
-
-        (response) => {
+        (response: any) => {
           this.messageService.add({
             key: 'myKey1',
             severity: 'success',
@@ -58,9 +51,9 @@ export class UserDetailsComponent implements OnInit {
           setTimeout(() => {
             this.ngxService.stopLoader('loader-01');
           }, 10);
-          console.log(response);
+
+          this.totalItems = response.public_repos;
           this.data = response;
-          localStorage.setItem('1',JSON.stringify(response));
           this.test = true;
         },
         (error: any) => {
@@ -77,27 +70,23 @@ export class UserDetailsComponent implements OnInit {
     });
   }
 
- getdetails(){
-    this.http.get(`https://api.github.com/users/${this.user}/repos?per_page=100`).subscribe((response:any) =>{
-      console.log(response);
-      this.projectDetails =  response;
-      this.totalItems = response.length;
-      this.test1 = true;
-      this.ngxService.startLoader('loader-01');
-      setTimeout(() => {
-        this.ngxService.stopLoader('loader-01');
-      }, 100);
-
-    })
+  getdetails() {
+    if (this.cachedData?.hasOwnProperty(this.page)) {
+      this.projectDetails = JSON.parse(this.cachedData[this.page]);
+    } else {
+      this.http
+        .get(
+          `https://api.github.com/users/${this.user}/repos?per_page=10&page=${this.page}`
+        )
+        .subscribe((response: any) => {
+          this.projectDetails = response;
+          this.cachedData[this.page] = JSON.stringify(response);
+          this.test1 = true;
+          this.ngxService.startLoader('loader-01');
+          setTimeout(() => {
+            this.ngxService.stopLoader('loader-01');
+          }, 100);
+        });
+    }
   }
-  // gty(){
-  //   this.http.get(`https://api.github.com/users/${this.user}/repos?per_page=100`).subscribe((response: any) => {
-  //     this.projectDetails =  response;
-  //     this.totalItems = response.length;
-  //     console.log(this.totalItems);
-  //     this.test1 = true;
-
-  //   })
-  // }
-
 }
